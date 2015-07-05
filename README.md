@@ -1,2 +1,2 @@
 # Algorithms
-[Coursera's Algos Course](https://class.coursera.org/algs4partI-008)
+[Coursera's Algorithms](https://class.coursera.org/algs4partI-008)
