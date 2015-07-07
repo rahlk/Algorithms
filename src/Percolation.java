@@ -1,13 +1,10 @@
 public class Percolation {
-  private int N;
-  private int[][] multi;
-  private WeightedQuickUnionUF uf; 
   
   // Create N-by-N grid, with all sites blocked
   public Percolation(int n){
-    N = n;
-    multi = new int[N][N];
-    uf = new WeightedQuickUnionUF(N*N);
+    private int N = n;
+    private int[][] multi = new int[N][N];;
+    private WeightedQuickUnionUF uf = new WeightedQuickUnionUF(N*N);; 
    }  
   
   // Open site (row i, column j) if it is not open already
