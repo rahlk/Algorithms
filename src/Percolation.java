@@ -1,14 +1,12 @@
 public class Percolation {
   
-  // Create N-by-N grid, with all sites blocked
-  public Percolation(int n){
+  public Percolation(int n){ // Create N-by-N grid, with all sites blocked
     private int N = n;
     private int[][] multi = new int[N][N];;
     private WeightedQuickUnionUF uf = new WeightedQuickUnionUF(N*N);; 
    }  
   
-  // Open site (row i, column j) if it is not open already
-  public void open(int i, int j){
+  public void open(int i, int j){ // Open site (row i, column j) if it is not open already
     if (i<0 || j<0|| i>=N || j>=N) { 
       throw new IndexOutOfBoundsException("IndexError: Row/Column Index is not between 0 and " + N);
       }
@@ -23,10 +21,8 @@ public class Percolation {
     }
   }
     
-  private int id(int i, int j) {
-    /*
-     * Take care of the edge cases 
-     */
+  private int id(int i, int j) { // 2D array to id for UnionFind
+    // Take care of the edge cases 
     if(i<0)  {i = 0;}
     if(j<0)  {j = 0;}
     if(i>=N) {i = N-1;}
@@ -34,42 +30,30 @@ public class Percolation {
     return N*i + j;
   }
   
-  //is site (row i, column j) open?
-  public boolean isOpen(int i, int j){
+  public boolean isOpen(int i, int j){ //is site (row i, column j) open?
     return multi[i][j] == 1;}     
   
-  //is site (row i, column j) full?
-  public boolean isFull(int i, int j){
+  public boolean isFull(int i, int j){ //is site (row i, column j) full?
     boolean full = false;
-    for(int k=0;k<N;k++) {
-//      StdOut.println(k);
-      if(uf.connected(id(i,j), k)) {
-        full = true;
-        break;
-      }
-    }
+    for(int k=0;k<N;k++)
+      if(uf.connected(id(i,j), k)) {return true;}
     return full;
   }
   
   public boolean percolates() { // Does the system percolate?
     boolean perc = false;
     for(int i=N-1, j=0; j<N; j++) {
-      if(isFull(i,j)) {
-        return true;
-        }
+      if(isFull(i,j)) {return true;}
     }
     return perc;
   }             
   
   public static void main(String[] args) { // Test client (optional)
-  //     StdOut.println("Testing, Testing, 1,2,3, ... ");
   int N = StdIn.readInt();
-  //     StdOut.println("N: "+N);
   Percolation p = new Percolation(N);
   while(true) {
     int i = StdRandom.uniform(N);
     int j = StdRandom.uniform(N);
-    //       StdOut.println(i+"  "+j+"  "+p.id(i, j));
     p.open(i,j);
     if(p.percolates()) {
       float P=0;
