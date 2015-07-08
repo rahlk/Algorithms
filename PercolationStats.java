@@ -33,9 +33,8 @@ public class PercolationStats {
         int j = StdRandom.uniform(N);
         p.open(i,j);
         for(int ii=0;ii<N; ii++)
-          for(int jj=0;jj<N;jj++) {
+          for(int jj=0;jj<N;jj++)
             P+= p.multi[ii][jj];
-          }
         P/=(N*N);
       }        
       thresh[--T]=P;
