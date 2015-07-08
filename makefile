@@ -73,3 +73,9 @@ java: $(CLASSES:.class=.java)
 
 clean:
 	$(RM) *.class
+
+git:
+	git add --all .
+	git commit -m 'Stuff...'
+	git push
+
