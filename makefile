@@ -79,3 +79,6 @@ git:
 	git commit -m 'Stuff...'
 	git push
 
+pull:
+	git pull 
+
