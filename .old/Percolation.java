@@ -1,6 +1,6 @@
 public class Percolation {
   private int N;      
-  public int[][] multi;
+  private int[][] multi;
   private WeightedQuickUnionUF uf;
   public Percolation(int n){ // Create N-by-N grid, with all sites blocked
     this.N = n;

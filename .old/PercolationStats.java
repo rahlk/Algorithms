@@ -26,20 +26,24 @@ public class PercolationStats {
   private static void monteCarloSim(int N, int T){
     while(T>0){
       float P=0;
+      int open=0;
       Percolation p = new Percolation(N);
-      while(!p.percolates()) {
-        P=0;
-        int i = StdRandom.uniform(N);
-        int j = StdRandom.uniform(N);
-        p.open(i,j);
-        for(int ii=0;ii<N; ii++)
-          for(int jj=0;jj<N;jj++)
-            P+= p.multi[ii][jj];
-        P/=(N*N);
-      }        
-      thresh[--T]=P;
-    }           
-  } 
+      while(open++<N*N) {
+        int  i = StdRandom.uniform(N);
+        int  j = StdRandom.uniform(N);
+        do{
+          i = StdRandom.uniform(N);
+          j = StdRandom.uniform(N);
+          p.open(i,j); 
+        } while(!p.isOpen(i,j));
+        if(p.percolates()){
+          P=open/(N*N);
+          thresh[--T]=P;
+          continue;
+        }
+      }
+    }        
+  }            
 
   public static void main(String[] args) { // test client (described below)
      if(args.length<1){
